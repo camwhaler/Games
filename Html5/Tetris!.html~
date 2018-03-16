@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0022)http://htmltetris.com/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+
+
+
+	 
+	<meta name="keywords" content="steven lu, tetris, game, free, javascript, html5, browser, native, iOS, iPhone, iPad, iPad 2, Android, webkit, opera, chrome, touch, safari">   
+	<meta name="description" content="This is a HTML5 tetris game that has wide browser support. It provides innovative intuitive touch controls for Apple iOS iPhone iPad products and also Android devices. ">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<title>Tetris!</title>	
+	
+	<!-- strokeText.js from http://www.netzgesta.de/dev/text/#overview 
+	
+	I need to switch to displaying game messages using regular elements rather than scrawling on canvas
+	
+	-->
+	<script src="Tetris!_files/strokeText.js"></script>
+
+	<link rel="stylesheet" href="Tetris!_files/page.css" type="text/css">
+    
+	<style type="text/css"> /* These are just for finger debug elements */
+		.finger-indicator {
+			position: absolute;
+			z-index: 4;
+			border: 2px solid #4a4;
+			background-color: rgba(0,50,0,0.5);
+			padding: 4px;
+		}
+		.finger-indicator.control {
+			background-color: rgba(50,0,0,0.5);
+			border: 2px solid #a44;
+		}
+	</style>
+	
+	
+	<!-- <script src='style/prettify/prettify.js'></script>
+	<link href="style/prettify.css" rel="stylesheet" type="text/css" /> 
+
+	<script>Event.observe(window, 'load', function() {prettyPrint()});</script> -->
+
+	<script src="Tetris!_files/tetris.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		TETRIS.setScoreIncreasing();
+	</script>
+	
+</head>
+
+
+<body>
+
+
+
+
+
+<div id="indicatorcontainer"></div>
+
+	<canvas id="board_canvas" width="274" height="638" style="position:fixed; left:10px; top:10px; z-index:1">
+		Your browser does not support HTML5 Canvas.
+	</canvas>
+	<canvas id="animated_canvas" width="274" height="638" style="position:fixed; left:10px; top:10px; z-index:3"></canvas>
+	<canvas id="shadow_canvas" width="274" height="638" style="position:fixed; left:10px; top:10px; z-index:2"></canvas>
+	<!-- <div id="placeholder" style=""> </div> -->
+	
+	<div style="position: fixed; top: 10px; font-family: sans-serif; font-size: 30px; left: 294px;"> <span id="score">0</span></div>
+
+
+<div id="instructions" style="position: relative; margin-left: 274px; top: 34px;">
+
+
+
+	<div id="controls" style="float: left"> 
+		<input type="button" onclick="if (TETRIS.isPaused()) { TETRIS.unPause(); } else { TETRIS.setPause(); }" value="Pause" style="font-size: 150%"><br>
+		
+		<p><input type="button" onclick="var i = document.getElementById(&quot;instr&quot;).style; i.display = (i.display==&quot;none&quot;?&quot;inline&quot;:&quot;none&quot;); TETRIS.setPause(); " value="Toggle Instructions"></p>
+	</div>
+	<div id="instr" style="display: none;"> 
+
+		<h1>HTML5 Tetris</h1>
+		<p> Touch events are now supported! Play on iOS and Android: <br>
+		Swipe anywhere to move, tap to rotate (Can also tap while swiping to rotate). Swipe down to drop.
+		</p>
+		<p>
+		Touch Sensitivity:
+		<input id="sens_range" type="range" min="0.2" max="5" step="0.05" value="1" onchange="TETRIS.setTouchSensitivity(this.value); document.getElementById(&quot;sensitivity&quot;).innerHTML = Math.round(this.value*1000)/1000;"> 
+		<span id="sensitivity">1</span>
+		</p>
+
+
+		<p> For PC/Mac: Use the Arrow keys to move and rotate, spacebar to drop. 
+		Z,X to rotate in either direction. </p>
+		<p> Pause: P</p>
+		<p> Mouse control (toggle): M<br>
+		left click to rotate and right click to drop. Mouse control is experimental. 
+		</p>
+		<p> To start a new game, refresh the page (F5)! </p>
+		<p>This is an infinite tetris game. It does not speed up.
+		To score more points, drop pieces as fast
+		as you can!</p>
+		<p>Changes coming soon (To do list): </p>
+		<ul>
+		<li>Centered positioning of board</li>
+		<li>Preview next piece(s)</li>
+		<li>More visual effects and animations: CSS3 transitions for animation, with fallback to JS animation. In particular I want a satisfying effect for the hard drop.</li>
+		</ul>
+		<p><input type="button" onclick="var result = TETRIS.toggle_touch_draw(); if (result) {this.value = &quot;Turn Touch Debug Off&quot;; } else { this.value=&quot;Turn Touch Debug On&quot;;}" value="Toggle touch debug"></p>
+
+	</div>
+</div>
+
+
+
+
+
+
+
+</body></html>
